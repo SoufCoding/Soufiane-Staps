@@ -341,6 +341,9 @@ h3.my-profission{
     flex: 0 0 100%;
     width: 100%;
 }
+.about .about-content .row{
+    align-items: flex-start;
+}
 .about .about-content .about-text{
     flex: 0 0 100%;
     max-width: 100%;
