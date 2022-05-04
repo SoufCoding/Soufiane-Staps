@@ -471,26 +471,26 @@
             let submit = document.querySelector('.submit');
             
             submit.addEventListener("click", (e)=>{
-                e.preventDefault()
-
+                e.preventDefault();
                 if (name.value == "" || email.value == "" || subject.value == "" || message.value == "") {
                     inputEmpty()
                 } else{
-                    sendEmail()
+                    sendMail()
                     success()
                     console.log('success');
                 } }
             )
+            function sendMail() {
+                emailjs.send("service_sp8fzqc","template_tc6g64t",{
+                    from_name: name.value,
+                    the_subject: subject.value,
+                    message: message.value,
+                    from_email: email.value
+                });
+            }
         }
         Validate()
-        function sendMail() {
-            emailjs.send('service1', 'template_yr33ran', {
-                from_name: username.value,
-                from_email: email.value,
-                the_subject: subject.value,
-                message: message.value,
-            });
-        }
+        
         
 
 
