@@ -394,33 +394,33 @@
                             <div class="row">
                                 <div class="form-item padd-15 col-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Name">
+                                        <input type="text" class="form-control username" placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="form-item padd-15 col-6">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Email">
+                                        <input type="email" class="form-control email" placeholder="Email">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-item padd-15 col-12">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Subject">
+                                        <input type="email" class="form-control subject" placeholder="Subject">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-item padd-15 col-12">
                                     <div class="form-group">
-                                        <textarea name="" class="form-control" placeholder="Message"></textarea>
+                                        <textarea name="" class="form-control message" placeholder="Message"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-item padd-15 col-12">
                                     <div class="form-group">
-                                        <button type="submit" class="btn">Send Message</button>
+                                        <button type="submit" class="btn submit">Send Message</button>
                                     </div>
                                 </div>
                             </div>
@@ -452,5 +452,77 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js" referrerpolicy="no-referrer"></script>
     <script src="/Js/script.js"></script>
     <script src="/Js/style-switcher.js"></script>
+    <!-- Email JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"> </script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("user_eDbFRcfozfdfXq91iXKrX");
+        })();
+    </script>
+    
+    <!-- Sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function Validate() {
+            let name = document.querySelector('.username');
+            let email = document.querySelector('.email');
+            let subject = document.querySelector('.subject');
+            let message = document.querySelector('.message');
+            let submit = document.querySelector('.submit');
+            
+            submit.addEventListener("click", (e)=>{
+                e.preventDefault()
+
+                if (name.value == "" || email.value == "" || subject.value == "" || message.value == "") {
+                    inputEmpty()
+                } else{
+                    sendEmail()
+                    success()
+                    console.log('success');
+                } }
+            )
+        }
+        Validate()
+        function sendMail() {
+            emailjs.send('service1', 'template_yr33ran', {
+                from_name: username.value,
+                from_email: email.value,
+                the_subject: subject.value,
+                message: message.value,
+            });
+        }
+        
+
+
+
+
+
+        function success() {
+        swal({
+            title: "Good job!",
+            text: "Successfully Sent Message!",
+            icon: "success",
+            button: "Ok",
+        });
+        }
+
+        function error() {
+        swal({
+            title: "Oops...!",
+            text: "Something Wrong, Message Could Not Be Sent!",
+            icon: "error",
+            button: "Ok",
+        });
+        }
+
+        function inputEmpty() {
+        swal({
+            title: "Oops...!",
+            text: "Inputs Fields Are Required!",
+            icon: "error",
+            button: "Ok",
+        });
+        }
+</script>
 </body>
 </html>
